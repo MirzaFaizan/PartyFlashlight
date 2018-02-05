@@ -84,7 +84,8 @@ private final static int DO_UPDATE_TEXT = 0;
         }
         // get the camera
         getCamera();
-        partyStart(300);
+        speed=300;
+        partyStart(speed);
 
 		/*
 		 * Switch button click event to toggle flash on/off
@@ -95,10 +96,12 @@ private final static int DO_UPDATE_TEXT = 0;
         up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                timer.cancel();
-                timer.purge();
-                    speed=100;
-                partyStart(speed);
+                if(speed>100) {
+                    timer.cancel();
+                    timer.purge();
+                    speed -= 100;
+                    partyStart(speed);
+                }
             }
         });
         down.setOnClickListener(new View.OnClickListener() {
